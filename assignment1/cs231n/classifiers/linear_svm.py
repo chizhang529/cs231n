@@ -77,15 +77,13 @@ def svm_loss_vectorized(W, X, y, reg):
   #############################################################################
   scores = X.dot(W)
 
-  # Calculate loss function
-  row_num = np.array(range(X.shape[0]))
-  indices = scores.shape[1] * row_num + y
-  correct_score_vec = np.take(scores, indices).reshape((-1, 1))
-  loss_mat = (scores - correct_score_vec + 1.0).clip(min = 0) # max(0, L)
-  loss += np.mean(np.sum(loss_mat, axis=1) - 1.0)
+  correct_class_score = scores[np.arange(num_train), y]
+  margins = np.maximum(0, scores - correct_class_score[:, np.newaxis] + 1.0)
+  margins[np.arange(num_train), y] = 0
+  loss = np.sum(margins)
 
-  # Add regularization term
-  loss += reg * np.sum(W * W)
+  loss /= num_train # get mean
+  loss += reg * np.sum(W * W) # regularization
 
   #############################################################################
   # TODO:                                                                     #
@@ -97,6 +95,15 @@ def svm_loss_vectorized(W, X, y, reg):
   # loss.                                                                     #
   #############################################################################
 
+  X_mask = np.zeros(margins.shape)
+  # column maps to class, row maps to sample; a value v in X_mask[i, j]
+  # adds a row sample i to column class j with multiple of v
+  X_mask[margins > 0] = 1
+  # for each sample, find the total number of classes where margin > 0
+  incorrect_counts = np.sum(X_mask, axis=1)
+  X_mask[np.arange(num_train), y] = -incorrect_counts
+  dW = X.T.dot(X_mask)
+  dW /= num_train # average out weights
   # Add regularization term
   dW += 2 * reg * W
   return loss, dW
