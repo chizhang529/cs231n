@@ -101,8 +101,14 @@ class TwoLayerNet(object):
     # in the variable loss, which should be a scalar. Use the Softmax           #
     # classifier loss.                                                          #
     #############################################################################
-    num_train = X.shape[0]
-    
+    scores -= np.max(scores, axis=1, keepdims=True) # avoid numerical instability
+    sum_scores = np.sum(np.exp(scores), axis=1, keepdims=True)
+    probs = np.exp(scores) / sum_scores
+
+    data_loss = np.sum( -np.log(probs[np.arange(N), y]) ) / N
+    reg_loss = reg * (np.sum(W1 * W1) + np.sum(W2 * W2))
+
+    loss = data_loss + reg_loss
     #############################################################################
     #                              END OF YOUR CODE                             #
     #############################################################################
@@ -114,7 +120,25 @@ class TwoLayerNet(object):
     # and biases. Store the results in the grads dictionary. For example,       #
     # grads['W1'] should store the gradient on W1, and be a matrix of same size #
     #############################################################################
-    pass
+    # compute the gradient on scores
+    dscores = probs
+    dscores[np.arange(N), y] -= 1
+    dscores /= N
+
+    # W2 and b2
+    grads['W2'] = np.dot(h1.T, dscores)
+    grads['b2'] = np.sum(dscores, axis=0)
+    # next backprop into hidden layer
+    dhidden = np.dot(dscores, W2.T)
+    # backprop the ReLU non-linearity
+    dhidden[h1 <= 0] = 0
+    # finally into W,b
+    grads['W1'] = np.dot(X.T, dhidden)
+    grads['b1'] = np.sum(dhidden, axis=0)
+
+    # add regularization
+    grads['W1'] += 2 * reg * W1
+    grads['W2'] += 2 * reg * W2
     #############################################################################
     #                              END OF YOUR CODE                             #
     #############################################################################
@@ -158,10 +182,9 @@ class TwoLayerNet(object):
       # TODO: Create a random minibatch of training data and labels, storing  #
       # them in X_batch and y_batch respectively.                             #
       #########################################################################
-      pass
-      #########################################################################
-      #                             END OF YOUR CODE                          #
-      #########################################################################
+      index_batch = np.random.choice(np.arange(num_train), batch_size)
+      X_batch = X[index_batch]
+      y_batch = y[index_batch]
 
       # Compute loss and gradients using the current minibatch
       loss, grads = self.loss(X_batch, y=y_batch, reg=reg)
@@ -173,10 +196,10 @@ class TwoLayerNet(object):
       # using stochastic gradient descent. You'll need to use the gradients   #
       # stored in the grads dictionary defined above.                         #
       #########################################################################
-      pass
-      #########################################################################
-      #                             END OF YOUR CODE                          #
-      #########################################################################
+      self.params['W1'] += -learning_rate * grads['W1']
+      self.params['b1'] += -learning_rate * grads['b1']
+      self.params['W2'] += -learning_rate * grads['W2']
+      self.params['b2'] += -learning_rate * grads['b2']
 
       if verbose and it % 100 == 0:
         print('iteration %d / %d: loss %f' % (it, num_iters, loss))
@@ -218,7 +241,17 @@ class TwoLayerNet(object):
     ###########################################################################
     # TODO: Implement this function; it should be VERY simple!                #
     ###########################################################################
-    pass
+    W1, b1 = self.params['W1'], self.params['b1']
+    W2, b2 = self.params['W2'], self.params['b2']
+    ReLU = lambda x: np.maximum(0, x)
+
+    # input --> hidden layer
+    h0 = X.dot(W1) + b1
+    h1 = ReLU(h0)
+    # hidden --> output layer
+    h2 = h1.dot(W2) + b2
+
+    y_pred = np.argmax(h2, axis=1)
     ###########################################################################
     #                              END OF YOUR CODE                           #
     ###########################################################################

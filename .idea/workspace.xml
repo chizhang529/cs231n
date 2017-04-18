@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="14ae0886-7ec9-43f3-8c42-68d88497e5f7" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assignment1/cs231n/classifiers/neural_net.py" afterPath="$PROJECT_DIR$/assignment1/cs231n/classifiers/neural_net.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assignment1/cs231n/classifiers/softmax.py" afterPath="$PROJECT_DIR$/assignment1/cs231n/classifiers/softmax.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assignment1/softmax.ipynb" afterPath="$PROJECT_DIR$/assignment1/softmax.ipynb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assignment1/two_layer_net.ipynb" afterPath="$PROJECT_DIR$/assignment1/two_layer_net.ipynb" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -21,10 +20,22 @@
       <file leaf-file-name="neural_net.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/assignment1/cs231n/classifiers/neural_net.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="493">
-              <caret line="104" column="4" lean-forward="false" selection-start-line="104" selection-start-column="4" selection-end-line="104" selection-end-column="4" />
+            <state relative-caret-position="164">
+              <caret line="208" column="22" lean-forward="false" selection-start-line="208" selection-start-column="22" selection-end-line="208" selection-end-column="22" />
               <folding>
                 <element signature="e#0#37#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="softmax.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/assignment1/cs231n/classifiers/softmax.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="76" column="40" lean-forward="true" selection-start-line="76" selection-start-column="40" selection-end-line="76" selection-end-column="69" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -51,9 +62,9 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="y" value="22" />
+    <option name="y" value="23" />
     <option name="width" value="1280" />
-    <option name="height" value="714" />
+    <option name="height" value="713" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -317,7 +328,7 @@
     <option name="remove_strategy" value="false" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="22" width="1280" height="714" extended-state="6" />
+    <frame x="0" y="23" width="1280" height="713" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2494043" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -349,7 +360,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#18#0" expanded="true" />
+            <element signature="e#0#18#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -369,7 +380,7 @@
         <state relative-caret-position="1479">
           <caret line="87" column="18" lean-forward="true" selection-start-line="87" selection-start-column="18" selection-end-line="87" selection-end-column="18" />
           <folding>
-            <element signature="e#0#18#0" expanded="true" />
+            <element signature="e#0#18#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -396,17 +407,7 @@
         <state relative-caret-position="425">
           <caret line="25" column="2" lean-forward="true" selection-start-line="25" selection-start-column="2" selection-end-line="26" selection-end-column="24" />
           <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assignment1/cs231n/classifiers/softmax.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="70" column="21" lean-forward="false" selection-start-line="70" selection-start-column="21" selection-end-line="70" selection-end-column="21" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
+            <element signature="e#0#18#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -419,10 +420,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/assignment1/cs231n/classifiers/softmax.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="76" column="40" lean-forward="true" selection-start-line="76" selection-start-column="40" selection-end-line="76" selection-end-column="69" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/assignment1/cs231n/classifiers/neural_net.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="104" column="4" lean-forward="false" selection-start-line="104" selection-start-column="4" selection-end-line="104" selection-end-column="4" />
+        <state relative-caret-position="164">
+          <caret line="208" column="22" lean-forward="false" selection-start-line="208" selection-start-column="22" selection-end-line="208" selection-end-column="22" />
           <folding>
             <element signature="e#0#37#0" expanded="true" />
           </folding>
